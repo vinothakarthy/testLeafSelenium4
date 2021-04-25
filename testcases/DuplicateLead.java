@@ -14,11 +14,11 @@ public class DuplicateLead extends ProjectSpecificMethod {
 		excelFileName="DuplicateLead";
 	}
 @Test(dataProvider = "fetch")
-	public  void runDuplicateLead(String username,String password,String phonenumber) throws InterruptedException	
+	public  void runDuplicateLead(String phonenumber) throws InterruptedException	
 	{
-	new LoginPage(driver).enterUsername(username).enterPassword(password).clickLoginButton()
+	new LoginPage(driver,prop).enterUsername(prop.getProperty("username")).enterPassword(prop.getProperty("password")).clickLoginButton()
 						.clickcrmSfa().clickleadTab().clickFindLead().clickphoneTab().enterphoneNumber(phonenumber)
-						.clickPhoneTabfindleadButton().clickleadlist().clickDuplicateLeadButton().clickCreateSubmit();
+						.clickFindLeadButton().clickleadlist().clickDuplicateLeadButton().clickCreateSubmit();
 	}
 
 }

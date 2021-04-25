@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.Properties;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -9,9 +11,10 @@ import io.cucumber.java.en.When;
 
 public class CreateLeadPage extends ProjectSpecificMethod {
 	
-	public CreateLeadPage(ChromeDriver driver)
+	public CreateLeadPage(ChromeDriver driver,Properties prop)
 	{
 	this.driver=driver;
+	this.prop=prop;
 	}
 	public CreateLeadPage entercompanyName(String companyname)
 	{
@@ -40,8 +43,8 @@ public class CreateLeadPage extends ProjectSpecificMethod {
 	
 	public ViewLeadPage clickCreateSubmit()
 	{
-		driver.findElement(By.name("submitButton")).click();	
-		return new ViewLeadPage(driver);
+		driver.findElement(By.name(prop.getProperty("SubmitButton.name"))).click();	
+		return new ViewLeadPage(driver,prop);
 	}
 	
 

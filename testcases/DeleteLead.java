@@ -18,12 +18,12 @@ public class DeleteLead extends ProjectSpecificMethod {
 	
 	@Test(dataProvider = "fetch")
 	
-	public void deleteleadtest(String username,String password,String phonenumber) throws InterruptedException
+	public void deleteleadtest(String phonenumber) throws InterruptedException
 	{
-		new LoginPage(driver).enterUsername(username).enterPassword(password)
+		new LoginPage(driver,prop).enterUsername(prop.getProperty("username")).enterPassword(prop.getProperty("password"))
 							.clickLoginButton().clickcrmSfa().clickleadTab().clickFindLead().clickphoneTab()
-							.enterphoneNumber(phonenumber).clickPhoneTabfindleadButton().getLeadId().clickleadlist().clickDeleteButton()
-							.clickFindLead().enterName().clickNameTabFindLead().verifyName();
+							.enterphoneNumber(phonenumber).clickFindLeadButton().getLeadId().clickleadlist().clickDeleteButton()
+							.clickFindLead().enterName().clickFindLeadButton().verifyName();
 						
 							
 	}

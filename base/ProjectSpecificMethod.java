@@ -1,8 +1,11 @@
 package base;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import java.time.Duration;
+import java.util.Properties;
 
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -16,14 +19,22 @@ public class ProjectSpecificMethod {
 	public  ChromeDriver driver;
 	public String excelFileName;
 	public static String leadID;
+	public  Properties prop;
 	
 	@BeforeMethod
-	public void startup()
+	public void startup() throws IOException
 	{
-		 WebDriverManager.chromedriver().setup();
+		//load properties file
+		FileInputStream fis = new FileInputStream("./src/main/resources/config.properties");
+		 prop = new Properties();
+		prop.load(fis);
+	
+		WebDriverManager.chromedriver().setup();
+		 
+		 
 			driver = new ChromeDriver();
-			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-			driver.get("http://leaftaps.com/opentaps/control/login");
+//			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+			driver.get(prop.getProperty("url"));
 			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 	}
 	 @DataProvider(name="fetch")

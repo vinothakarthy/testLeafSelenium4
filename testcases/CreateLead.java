@@ -15,18 +15,17 @@ public class CreateLead extends ProjectSpecificMethod {
 
    @Test(dataProvider = "fetch")
   
-	public void createLead(String username,String password,String companyname,
-			String fristname,String lastname,String phonenumber)
+	public void createLead(String companyname,String fristname,String lastname,String phonenumber)
 	{
-		new LoginPage(driver).enterUsername(username)
-						.enterPassword(password)
+		new LoginPage(driver,prop).enterUsername(prop.getProperty("username"))
+						.enterPassword(prop.getProperty("password"))
 						.clickLoginButton()
 						.clickcrmSfa()
 						.clickleadTab()
 						.clickCreateLead()
 						.entercompanyName(companyname)
 						.enterfirstName(fristname)
-						.enterlastName("karthikeyah")
+						.enterlastName(lastname)
 						.enterphoneNumber(phonenumber)
 						.clickCreateSubmit()
 						.verifyFirstName();

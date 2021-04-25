@@ -11,6 +11,8 @@ public class LoginAndLogout extends ProjectSpecificMethod {
 @Test	
 public void loginLogout()
 {
- new LoginPage(driver).enterUsername("DemoSalesManager").enterPassword("crmsfa").clickLoginButton().clickLogoutButton();
+ new LoginPage(driver,prop).enterUsername(prop.getProperty("username"))
+ 				.enterPassword(prop.getProperty("password"))
+ 				.clickLoginButton().clickLogoutButton();
 }
 }

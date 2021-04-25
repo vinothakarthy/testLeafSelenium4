@@ -2,6 +2,7 @@ package pages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.Set;
 
 import org.openqa.selenium.By;
@@ -14,9 +15,10 @@ import io.cucumber.java.en.When;
 
 public class MergeLeadPage  extends ProjectSpecificMethod {
 
-	public MergeLeadPage(ChromeDriver driver)
+	public MergeLeadPage(ChromeDriver driver,Properties prop)
 	{
 		this.driver = driver;
+		this.prop=prop;
 	}
 	;
 public MergeLeadPage clickMergefromLead(String firstName1) throws InterruptedException
@@ -53,7 +55,7 @@ public MyLeadPage clickmergeButton()
 {
 	driver.findElement(By.xpath("//a[text()='Merge']")).click();
 	driver.switchTo().alert().accept();
-	return new MyLeadPage(driver);
+	return new MyLeadPage(driver,prop);
 		
 }
 
